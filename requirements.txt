@@ -1,4 +1,15 @@
 streamlit
 numpy
 pandas
+matplotlib
+seaborn
+prophet
+neuralprophet
+pystan
+cmdstanpy
+statsmodels
+keras
+tensorflow
+pmdarima
 scikit-learn
+torch
