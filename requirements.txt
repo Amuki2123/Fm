@@ -1,19 +1,23 @@
 streamlit
-seaborn
-pickle-mixin
-joblib
-jsonlib
+numpy
+scipy
+pandas
 matplotlib
+seaborn
+scikit-learn
+tensorflow
+keras
+pmdarima
+statsmodels
 prophet>=1.0.1
 neuralprophet==0.5.1
 holidays
-pystan
+pickle-mixin
+joblib
+jsonlib
 cmdstanpy
-statsmodels
-keras
-tensorflow
-pmdarima
-scikit-learn
+pystan
 torch
+
 
 
