@@ -1,18 +1,19 @@
-streamlit==1.10.0
-pandas==1.4.2
-plotly==5.9.0
-scipy==1.8.1
-matplotlib
-seaborn
-prophet
+streamlit>=1.10.0
+seaborn>=0.11.0
+pickle-mixin
+joblib>=1.0.0
+jsonlib
+matplotlib>=3.4.0
+prophet>=1.0.1
 neuralprophet==0.5.1
 holidays==0.14.2
-pystan==2.19.1.1
+pystan>=2.19.1.1
 cmdstanpy
-statsmodels
-keras
-tensorflow
-pmdarima
-scikit-learn
-torch
+statsmodels>=0.13.0
+keras>=2.6.0
+tensorflow>=2.6.0
+pmdarima>=1.8.0
+scikit-learn>=0.24.0
+torch==1.9.0+cpu  # For CPU-only use. Update if using GPU.
+
 
