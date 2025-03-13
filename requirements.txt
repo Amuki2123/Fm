@@ -5,7 +5,7 @@ joblib
 jsonlib
 matplotlib
 prophet>=1.0.1
-neuralprophet
+neuralprophet==0.5.1
 holidays
 pystan
 cmdstanpy
