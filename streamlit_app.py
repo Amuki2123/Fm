@@ -1,5 +1,13 @@
 import streamlit as st
 import seaborn as sns
+import pandas as pd  # Added missing import
+import pickle
+import torch
+import joblib
+import json
+import streamlit as st
+import seaborn as sns
+import pandas as pd  # Added missing import
 import pickle
 import torch
 import joblib
@@ -10,28 +18,18 @@ from prophet import Prophet
 from prophet.serialize import model_from_json
 from neuralprophet import NeuralProphet
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
-from neuralprophet import configure, df_utils, np_types, time_dataset  
-from neuralprophet.conformal_prediction import conformalize            
-from neuralprophet.logger import MetricsLogger                         
-from neuralprophet.plot_forecast_matplotlib import plot, plot_component 
-from neuralprophet.logger import ProgressBar
 from keras.models import model_from_json
-from fbprophet import Prophet
-from prophet.serialize import model_to_json, model_from_json
-from neuralprophet import NeuralProphet, set_log_level
 from sklearn.preprocessing import MinMaxScaler
 import statsmodels.api as sm
 from statsmodels.tsa.arima.model import ARIMA
-from statsmodels.tsa.arima_model import ARIMAResults
 import pmdarima as pm
-from statsmodels.tsa.stattools import adfuller, kpss
-from statsmodels.tsa.stattools import acf
-from statsmodels.tsa.stattools import pacf
+from statsmodels.tsa.stattools import adfuller, kpss, acf, pacf
 from statsmodels.tsa.seasonal import seasonal_decompose
 from statsmodels.graphics.tsaplots import plot_predict
 
+
 # Title of the app
-st.title(" 🎈Regional Malaria Cases Forecasting Models🎈")
+st.title("🎈 Regional Malaria Cases Forecasting Models 🎈")
 st.info("Forecast malaria cases for Juba, Yei, and Wau based on rainfall and temperature using various models.")
 
 # Upload dataset
@@ -45,26 +43,29 @@ if uploaded_file:
     data.set_index('Date', inplace=True)
 
 # Load pre-trained models
-models = {
-    'Juba': {
-        'ARIMA': pickle.load(open('juba_arima_model.pkl', 'rb')),
-        'NeuralProphet': pickle.load(open('juba_np_model.pkl', 'rb')),
-        'Prophet': Prophet().from_json(open('juba_prophet_model.json', 'r').read()),
-        'Exponential Smoothing': pickle.load(open('juba_es_model.pkl', 'rb'))
-    },
-    'Yei': {
-        'ARIMA': pickle.load(open('yei_arima_model.pkl', 'rb')),
-        'NeuralProphet': pickle.load(open('yei_np_model.pkl', 'rb')),
-        'Prophet': Prophet().from_json(open('yei_prophet_model.json', 'r').read()),
-        'Exponential Smoothing': pickle.load(open('yei_es_model.pkl', 'rb'))
-    },
-    'Wau': {
-        'ARIMA': pickle.load(open('wau_arima_model.pkl', 'rb')),
-        'NeuralProphet': pickle.load(open('wau_np_model.pkl', 'rb')),
-        'Prophet': Prophet().from_json(open('wau_prophet_model.json', 'r').read()),
-        'Exponential Smoothing': pickle.load(open('wau_es_model.pkl', 'rb'))
+try:
+    models = {
+        'Juba': {
+            'ARIMA': pickle.load(open('juba_arima_model.pkl', 'rb')),
+            'NeuralProphet': pickle.load(open('juba_np_model.pkl', 'rb')),
+            'Prophet': Prophet().from_json(open('juba_prophet_model.json', 'r').read()),
+            'Exponential Smoothing': pickle.load(open('juba_es_model.pkl', 'rb'))
+        },
+        'Yei': {
+            'ARIMA': pickle.load(open('yei_arima_model.pkl', 'rb')),
+            'NeuralProphet': pickle.load(open('yei_np_model.pkl', 'rb')),
+            'Prophet': Prophet().from_json(open('yei_prophet_model.json', 'r').read()),
+            'Exponential Smoothing': pickle.load(open('yei_es_model.pkl', 'rb'))
+        },
+        'Wau': {
+            'ARIMA': pickle.load(open('wau_arima_model.pkl', 'rb')),
+            'NeuralProphet': pickle.load(open('wau_np_model.pkl', 'rb')),
+            'Prophet': Prophet().from_json(open('wau_prophet_model.json', 'r').read()),
+            'Exponential Smoothing': pickle.load(open('wau_es_model.pkl', 'rb'))
+        }
     }
-}
+except FileNotFoundError as e:
+    st.error(f"Model file not found: {e}")
 
 # Select region and model
 region = st.selectbox("Select a region:", ['Juba', 'Yei', 'Wau'])
@@ -115,13 +116,12 @@ if st.button("Forecast Malaria Cases"):
 
     except Exception as e:
         st.error(f"Error occurred during forecast: {e}")
+        future_df = None  # Ensure future_df is defined even if an error occurs
 
 # Option to download forecast as CSV
-if 'future_df' in locals():
+if 'future_df' in locals() and future_df is not None:
     csv = future_df.to_csv(index=False)
     st.download_button(label="Download Forecast as CSV",
                        data=csv,
                        file_name=f"{region}_{model_type}_forecast.csv",
                        mime="text/csv")
-
-
