@@ -12,7 +12,7 @@ from statsmodels.tsa.holtwinters import ExponentialSmoothing
 from neuralprophet import configure, df_utils, np_types, time_dataset  
 from neuralprophet.conformal_prediction import conformalize            
 from neuralprophet.logger import MetricsLogger                         
-from neuralprophet.plot_forecast_matplotlib import plot, plot_compone 
+from neuralprophet.plot_forecast_matplotlib import plot, plot_component 
 from neuralprophet.logger import ProgressBar
 from keras.models import model_from_json
 from fbprophet import Prophet
