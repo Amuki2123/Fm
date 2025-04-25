@@ -1,24 +1,24 @@
 # Streamlit and Visualization
-streamlit>=1.10.0
-seaborn>=0.11.0
-matplotlib>=3.4.0
+streamlit
+seaborn
+matplotlib
 
 # Serialization and Utilities
 pickle-mixin
-joblib>=1.0.0
+joblib
 jsonlib
 
 # Machine Learning and Forecasting
-scikit-learn>=0.24.0
-pmdarima>=1.8.0
-statsmodels>=0.13.0
-prophet>=1.0.1
-neuralprophet==0.5.1
-holidays==0.14.2
+scikit-learn
+pmdarima
+statsmodels
+prophet
+neuralprophet
+holidays
 
 # Deep Learning Frameworks
-tensorflow>=2.6.0
-keras>=2.6.0
+tensorflow
+keras
 
 # Install the latest compatible PyTorch for Python 3.11
 torch
