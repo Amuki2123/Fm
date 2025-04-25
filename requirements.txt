@@ -1,31 +1,27 @@
-# Streamlit and Visualization
-streamlit
-seaborn
+# Core Libraries
+numpy
+pandas  # Downgraded to support neuralprophet 0.6.1
+scipy
+
+# Visualization
 matplotlib
+seaborn
+plotly
 
-# Serialization and Utilities
-pickle-mixin
-joblib
-jsonlib
-
-# Machine Learning and Forecasting
-scikit-learn
-pmdarima
-statsmodels
+# Time Series Forecasting
 prophet
-neuralprophet
-holidays
+neuralprophet  # Now compatible with pandas<2.0.0
+statsmodels
+pmdarima
 
-# Deep Learning Frameworks
-tensorflow
+# Machine Learning & Utilities
+scikit-learn
+tensorflow  # or tensorflow-cpu if no GPU
 keras
-
-# Install the latest compatible PyTorch for Python 3.11
+joblib
+pytorch-lightning 
 torch
-torchvision
-torchaudio --index-url https://download.pytorch.org/whl/cpu
+pickle5  # Only needed for Python < 3.8
 
-# Additional Tools
-pystan>=2.19.1.1
-cmdstanpy
-
+# Streamlit & Deployment
+streamlit
