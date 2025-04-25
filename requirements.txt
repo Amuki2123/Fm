@@ -1,13 +1,5 @@
 # Core Libraries
 numpy
-pandas  # Downgraded to support neuralprophet 0.6.1
-scipy
-
-# Visualization
-matplotlib
-seaborn
-plotly
-
 # Time Series Forecasting
 prophet
 neuralprophet  # Now compatible with pandas<2.0.0
@@ -16,12 +8,10 @@ pmdarima
 
 # Machine Learning & Utilities
 scikit-learn
-tensorflow  # or tensorflow-cpu if no GPU
+tensorflow  
 keras
-joblib
 pytorch-lightning 
 torch
-pickle5  # Only needed for Python < 3.8
 
 # Streamlit & Deployment
 streamlit
